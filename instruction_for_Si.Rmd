@@ -1,0 +1,39 @@
+---
+title: "introduction_for_si"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data preparation
+
+All the raw MS data should be transfered to mzXML format using ProteoWizard.
+
+Then the mzXML data placed in tow folders named as "POS" and "NEG" according to their mode.
+
+A "metabolite.info.csv" must be outside the "POS" and "NEG" folder which is used to give the information for metabolites.
+
+The metabolite.info must have 11 columns, which can be got from the examples. 
+
+**Note: The Submitter column must same with names of mzXML datasets. For example, if metabolite is in dataset "MixA_NCE25.mzXML", then the "Submitter" of this metabolite is "MixA". Please see the demo data.**
+
+## Run `databaseConstruction`
+
+```{r, eval=FALSE}
+###set work directory
+setwd(".")
+databaseConstruction(
+  path = ".",
+  version = "0.0.1",
+  mz.tol = 15,
+  rt.tol = 30,
+  threads = 3
+)
+```
+
+
+The MS2 database will be saved in the path.
